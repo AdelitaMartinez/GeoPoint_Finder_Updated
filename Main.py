@@ -72,3 +72,14 @@ def read_points_from_db(self):
             point = GeoPoint(lat, lon, description)
             point_list.append(point)
         return point_list
+
+def find_closest_point(self, user_point, point_list):
+        # Find the closest GeoPoint to the user's input location.
+        closest_point = None
+        min_distance = float('inf')
+        for point in point_list:
+            distance = user_point.Distance(point.GetPoint())
+            if distance < min_distance:
+                min_distance = distance
+                closest_point = point
+        return closest_point
