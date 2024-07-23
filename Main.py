@@ -83,3 +83,8 @@ def find_closest_point(self, user_point, point_list):
                 min_distance = distance
                 closest_point = point
         return closest_point
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = GeoPointApp(root)
+    root.mainloop()
