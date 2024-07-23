@@ -1,7 +1,7 @@
-# Main.py
+# main.py
 # Programmer: Adelita Martinez
 # Email: amartinez1013@cnm.edu
-# Purpose: Demonstrate how to use a GUI and read from a database
+# Purpose: Demonstrate how to use a GUI and read points from a database
 # Python Version: 3.12.3
 
 import tkinter as tk
@@ -31,13 +31,13 @@ class GeoPointApp:
         self.find_button = tk.Button(self.root, text="Find Closest Location", command=self.find_closest_location)
         self.find_button.grid(row=3, column=0, columnspan=2, padx=10, pady=10)
 
-def find_closest_location(self):
+    def find_closest_location(self):
         try:
             # Get user input
             lat = float(self.lat_entry.get().strip())
             lon = float(self.lon_entry.get().strip())
 
-            # Read points from database
+            # Read points from the database
             points = self.read_points_from_db()
 
             # Create user GeoPoint
@@ -58,23 +58,22 @@ def find_closest_location(self):
         except Exception as e:
             messagebox.showerror("Error", f"An error occurred: {e}")
 
-def read_points_from_db(self):
-        # Read points from the database and return a list of GeoPoint Objects
+    def read_points_from_db(self):
+        # Read points from the database and return a list of GeoPoint objects
+        point_list = []
         conn = sqlite3.connect('geopoints.db')
         cursor = conn.cursor()
-        cursor.execute('SELECT latitude, longitude, description FROM points')
+        cursor.execute("SELECT latitude, longitude, description FROM points")
         rows = cursor.fetchall()
-        conn.close()
-        
-        point_list = []
         for row in rows:
             lat, lon, description = row
             point = GeoPoint(lat, lon, description)
             point_list.append(point)
+        conn.close()
         return point_list
 
-def find_closest_point(self, user_point, point_list):
-        # Find the closest GeoPoint to the user's input location.
+    def find_closest_point(self, user_point, point_list):
+        # Find the closest GeoPoint to the user's input location
         closest_point = None
         min_distance = float('inf')
         for point in point_list:
