@@ -28,3 +28,12 @@ points = [
   (35.528541, -108.758155, 'Gallup'),
   (35.105925, -106.628423, 'Albuquerque')
 ]
+
+cursor.executemany('''
+INSERT INTO points (latitude, longitude, description)
+VALUES (?, ?, ?)
+''', points)
+
+# Commit and close connection
+conn.commit()
+conn.close()
