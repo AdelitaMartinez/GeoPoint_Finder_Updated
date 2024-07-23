@@ -5,3 +5,7 @@
 # Python Version: 3.12.3
 
 import sqlite3
+
+# Connect to SQLite database
+conn = sqlite3.connect('geopoints.db')
+cursor = conn.cursor()
