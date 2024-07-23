@@ -31,7 +31,7 @@ class GeoPointApp:
         self.find_button = tk.Button(self.root, text="Find Closest Location", command=self.find_closest_location)
         self.find_button.grid(row=3, column=0, columnspan=2, padx=10, pady=10)
 
- def find_closest_location(self):
+def find_closest_location(self):
         try:
             # Get user input
             lat = float(self.lat_entry.get().strip())
@@ -57,3 +57,18 @@ class GeoPointApp:
             messagebox.showerror("Error", "Invalid coordinates input. Please enter valid coordinates.")
         except Exception as e:
             messagebox.showerror("Error", f"An error occurred: {e}")
+
+def read_points_from_db(self):
+        # Read points from the database and return a list of GeoPoint Objects
+        conn = sqlite3.connect('geopoints.db')
+        cursor = conn.cursor()
+        cursor.execute('SELECT latitude, longitude, description FROM points')
+        rows = cursor.fetchall()
+        conn.close()
+        
+        point_list = []
+        for row in rows:
+            lat, lon, description = row
+            point = GeoPoint(lat, lon, description)
+            point_list.append(point)
+        return point_list
