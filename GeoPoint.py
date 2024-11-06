@@ -1,6 +1,6 @@
 # GeoPoint.py
 # Programmer: Adelita Martinez
-# Email: amartinez1013@cnm.edu
+# Email: 94martinez.adelita@gmail.com
 # Purpose: Define the GeoPoint class for geographic point representation and distance calculation
 # Python Version: 3.12.3
 
